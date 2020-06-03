@@ -46,6 +46,27 @@ class User extends BaseController
 			} else {
 				$User = new UserModel();
 				$userdata = $User->where('email', $this->request->getPost('email'))->first();
+					if($this->request->getPost('remember')){
+					$token = random_string('md5', 32);
+					set_cookie('remembermetoken', $token,'3600'); // with cookies working code 
+				
+					 $User->set('remember_token',$token);
+					 $User->where('email',$this->request->getPost('email'));
+					 $User->update();
+					// the above three line of code produce 
+					//UPDATE `user` SET = '' WHERE `email` = 'pal@gmail.com'
+					// why it is not setting remember_token
+					//contrary to that if i use 
+					// $User->query("UPDATE `user` SET `remember_token`='".$token."' WHERE `email`= '".$this->request->getPost('email')."'");
+					// it will produce correct query ?	 
+					//UPDATE `user` SET `remember_token`='d0dc17846d297bb28ac37e16e280060d' WHERE `email`= 'pal@gmail.com'
+
+					echo $User->getLastQuery(); 	
+					//echo (string)$User->affectedRows();
+					//print_r($User->error());
+					die;
+	
+				}
 
 				if (!empty($userdata)) {
 					if (password_verify($this->request->getPost('password'), $userdata['password'])) {
