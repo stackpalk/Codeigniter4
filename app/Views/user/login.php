@@ -68,7 +68,7 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary input-group">
-              <input type="checkbox" name="remember" id="remember">
+              <input type="checkbox" name="remember" value="1" id="remember">
               <label for="remember">
                 Remember Me
               </label>
