@@ -11,7 +11,7 @@ class UserModel extends Model
     //protected $returnType     = 'array';  // model return type of qury done on this model
     protected $useSoftDeletes = false; // if using soft delete you need to mention the soft delete colomn in table   protected $deletedField  = 'deleted_at';
 
-    protected $allowedFields = ['username', 'email','password'] ;// onlhy these colomn are allowed in insert and update
+    protected $allowedFields = ['username', 'email','password','email_verified_at','remember_token'] ;// onlhy these colomn are allowed in insert and update
 
     protected $useTimestamps = true;  // timestamp to be used in created at updated at adn delted at in case of soft delete
     protected $createdField  = 'created_at';
